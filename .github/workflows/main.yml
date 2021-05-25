@@ -11,7 +11,7 @@ jobs:
       run: |
         pip install pytest
         pip install apache-airflow
-        pytest include/test_dag_validation.py
+        pytest test_dag_validation.py
     - name: Push to registry
       uses: elgohr/Publish-Docker-Github-Action@2.6
       if: github.ref == 'refs/heads/dev'
@@ -28,7 +28,7 @@ jobs:
       run: |
         pip install pytest
         pip install apache-airflow
-        pytest include/test_dag_validation.py
+        pytest test_dag_validation.py
     - name: Push to registry
       uses: elgohr/Publish-Docker-Github-Action@2.6
       if: github.ref == 'refs/heads/main'
