@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: [dev, master]
+    branches: [dev, main]
 jobs:
   dev-push:
     runs-on: ubuntu-latest
@@ -29,7 +29,7 @@ jobs:
         pytest include/test_dag_validation.py
     - name: Push to registry
       uses: elgohr/Publish-Docker-Github-Action@2.6
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main'
       with:
           name: prod-de/airflow:ci-${{ github.sha }}
           username: _
