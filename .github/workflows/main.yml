@@ -1,0 +1,38 @@
+name: CI
+on:
+  push:
+    branches: [dev, master]
+jobs:
+  dev-push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Test DAGs with Pytest
+      run: |
+        pip install pytest
+        pytest include/test_dag_validation.py
+    - name: Push to registry
+      uses: elgohr/Publish-Docker-Github-Action@2.6
+      if: github.ref == 'refs/heads/dev'
+      with:
+          name: de-dev/airflow:ci-${{ github.sha }}
+          username: _
+          password: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+          registry: registry.dev.astronomerdemo.com
+  prod-push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Test DAGs with Pytest
+      run: |
+        pip install pytest
+        pytest include/test_dag_validation.py
+    - name: Push to registry
+      uses: elgohr/Publish-Docker-Github-Action@2.6
+      if: github.ref == 'refs/heads/master'
+      with:
+          name: prod-de/airflow:ci-${{ github.sha }}
+          username: _
+          password: ${{ secrets.PROD_SERVICE_ACCOUNT_KEY }}
+          registry: registry.dev.astronomerdemo.com
+
