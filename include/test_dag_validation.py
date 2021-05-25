@@ -7,7 +7,7 @@ def test_no_import_errors():
 
 
 def test_retries_present():
-  dag_bag = DagBag()
+  dag_bag = DagBag(dag_folder='../dags/')
   for dag in dag_bag.dags:
       retries = dag_bag.dags[dag].default_args.get('retries', [])
       error_msg = 'Retries not set to 2 for DAG {id}'.format(id=dag)
