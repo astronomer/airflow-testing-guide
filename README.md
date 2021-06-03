@@ -1,6 +1,6 @@
 # airflow-testing-guide
 
-This repo contains example Airflow DAGs with a DAG validation test suite to show how you can implement automated testing of your DAGs as part of a CI/CD workflow. A guide with an in-depth explanation of how to test Airflow DAGs will be published soon. 
+This repo contains example Airflow DAGs with a DAG validation test suite to show how you can implement automated testing of your DAGs as part of a CI/CD workflow. A guide with an in-depth explanation of how to test Airflow DAGs can be found [here](https://www.astronomer.io/guides/testing-airflow). 
 
 DAG validation tests are written using `pytest` and can be found in the `test_dag_validation.py` file. The example tests include:
 
